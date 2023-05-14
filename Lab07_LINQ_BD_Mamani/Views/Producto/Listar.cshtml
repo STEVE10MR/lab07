@@ -1,0 +1,46 @@
+﻿@using Lab07_LINQ_BD_Mamani.Models;
+@model IEnumerable<Lab07_LINQ_BD_Mamani.Models.PRODUCTO>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Listar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Listado de productos</h2>
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Producto</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDPRODUCTO</td>
+                        <td>@item.NOMBRE</td>
+                        <td>@item.DESCRIPCION</td>
+                        <td>@item.PRECIO</td>
+                        <td>@item.STOCK</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

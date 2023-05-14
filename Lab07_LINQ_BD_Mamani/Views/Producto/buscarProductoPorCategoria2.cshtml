@@ -1,0 +1,95 @@
+﻿@using Lab07_LINQ_BD_Mamani.Models;
+@model IEnumerable<Lab07_LINQ_BD_Mamani.Models.PRODUCTO>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Listar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center my-4">Consultar productos por Categoria</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                @using (Html.BeginForm("buscarProductoPorCategoria2", "Producto", FormMethod.Post, new { @class = "form-inline my-3" }))
+                {
+                    <div class="d-flex flex-column">
+                        <div class="mb-4">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="busqueda">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                        </div>
+                        <div class="mb-4 d-flex justify-content-start">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" value="0" id="radioNombre" checked>
+                                <label class="form-check-label" for="radioNombre">Nombre</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" value="1" id="radioCategoria">
+                                <label class="form-check-label" for="radioCategoria">Categoría</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" value="2" id="radioDescripcion">
+                                <label class="form-check-label" for="radioDescripcion">Descripción</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" value="3" id="radioEstado">
+                                <label class="form-check-label" for="radioEstado">Estado</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+        <br>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Producto</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDPRODUCTO</td>
+                        <td>@item.NOMBRE</td>
+                        <td>@item.CATEGORIA.NOMBRE</td>
+                        <td>@item.DESCRIPCION</td>
+                        <td>@item.PRECIO</td>
+                        <td>@item.STOCK</td>
+                        <td>
+                            @if (@item.ESTADO.Equals("A"))
+                            {
+                                <span class="badge badge-success">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger">Inactivo</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
